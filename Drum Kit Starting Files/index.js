@@ -25,17 +25,37 @@ while (i < document.querySelectorAll(".drum").length)
     i++;
 }*/
 
-//the switch case version
+//the switch case version for event click
 
 var i = 0;
 
 while (i < document.querySelectorAll(".drum").length)
 {
-    document.querySelectorAll(".drum")[i].addEventListener("click", function()
+    document.querySelectorAll(".drum")[i].addEventListener("click", function(event)
     {
         let letter = this.innerHTML;
 
-        switch(letter)
+        drum_sound(letter);
+
+        console.log(event);
+
+    } )
+    i++;
+}
+
+//the keydown version (keypress has been deprecated)
+
+document.addEventListener("keydown", function(event){
+    console.log(event.code);
+    drum_sound(event.key);
+}
+
+)
+
+
+function drum_sound(key)
+{
+    switch(key)
         {
             case "w":
                 let crash = new Audio("sounds/crash.mp3");
@@ -74,11 +94,7 @@ while (i < document.querySelectorAll(".drum").length)
 
             default:
         }
-
-    } )
-    i++;
 }
-
 
 
 
